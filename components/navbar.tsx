@@ -2,12 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "motion/react"
-import { ModeToggle } from "@/components/mode-toggle"
 
 const LINKS = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Technology", href: "#technology" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ]
@@ -52,7 +50,6 @@ export function Navbar() {
           ))}
         </ul>
         <div className="flex items-center gap-3">
-          <ModeToggle />
           <a
             href="#contact"
             className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-shadow hover:shadow-[0_0_30px_-6px_oklch(0.62_0.16_250_/_0.7)]"

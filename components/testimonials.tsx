@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
 import Image from "next/image"
 
 const DATA = [
@@ -35,103 +33,56 @@ const DATA = [
   },
 ]
 
-// pre-set floating positions for ambient layout
-const POS = [
-  { top: "12%", left: "8%", size: 132, delay: 0 },
-  { top: "30%", left: "62%", size: 168, delay: 0.6 },
-  { top: "58%", left: "20%", size: 150, delay: 1.1 },
-  { top: "62%", left: "70%", size: 124, delay: 0.3 },
-]
-
 export function Testimonials() {
-  const [active, setActive] = useState<number | null>(null)
-
   return (
-    <section id="testimonials" className="relative min-h-screen overflow-hidden py-24">
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary">Voices</p>
-        <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-          Trusted by visionary teams
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
-          Tap a floating bubble to expand the full story.
-        </p>
-      </div>
+    <section id="testimonials" className="relative overflow-hidden py-24 bg-background border-t border-border/20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="text-center mb-16">
+          <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary">
+            Voices
+          </p>
+          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
+            Trusted by visionary teams
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
+            Read what our partners say about working with VELLOX.
+          </p>
+        </div>
 
-      {/* floating bubbles field */}
-      <div className="relative mx-auto mt-12 h-[68vh] max-w-5xl px-6">
-        {DATA.map((d, i) => {
-          const p = POS[i]
-          return (
-            <motion.button
+        {/* 2x2 grid of Apple liquid matte glass cards */}
+        <div className="grid gap-8 sm:grid-cols-2 max-w-5xl mx-auto">
+          {DATA.map((d) => (
+            <div
               key={d.name}
-              onClick={() => setActive(i)}
-              className="absolute"
-              style={{ top: p.top, left: p.left }}
-              animate={{ y: [0, -18, 0] }}
-              transition={{ duration: 6 + i, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: p.delay }}
-              whileHover={{ scale: 1.08 }}
+              className="group apple-liquid-glass rounded-[2rem] p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-white/60 relative overflow-hidden"
             >
-              <div
-                className="group relative flex items-center justify-center overflow-hidden rounded-full glass"
-                style={{ width: p.size, height: p.size }}
-              >
-                <Image
-                  src={d.photo || "/placeholder.svg"}
-                  alt={`${d.name}, ${d.company}`}
-                  width={p.size}
-                  height={p.size}
-                  className="h-full w-full rounded-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-110"
-                />
-                <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-primary/20" />
-                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_25%,oklch(1_0_0_/_0.5),transparent_55%)]" />
+              {/* Subtle quote icon overlay in top-right */}
+              <div className="absolute right-6 top-6 text-primary/10 select-none pointer-events-none text-7xl font-serif leading-none">
+                “
               </div>
-            </motion.button>
-          )
-        })}
-      </div>
 
-      {/* expanded crystal sphere */}
-      <AnimatePresence>
-        {active !== null && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-6 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActive(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.4, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.4, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 220, damping: 24 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative flex max-w-lg flex-col items-center rounded-[2.5rem] glass p-10 text-center"
-            >
-              <div className="relative h-24 w-24 overflow-hidden rounded-full ring-2 ring-primary/30">
-                <Image
-                  src={DATA[active].photo || "/placeholder.svg"}
-                  alt={DATA[active].name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <p className="mt-6 text-balance text-lg leading-relaxed text-foreground md:text-xl">
-                {`"${DATA[active].quote}"`}
+              <p className="text-base leading-relaxed text-foreground/80 font-normal z-10">
+                {`"${d.quote}"`}
               </p>
-              <p className="mt-6 font-semibold text-foreground">{DATA[active].name}</p>
-              <p className="text-sm text-muted-foreground">{DATA[active].company}</p>
-              <button
-                onClick={() => setActive(null)}
-                className="mt-6 rounded-full border border-primary/25 px-5 py-2 text-xs uppercase tracking-widest text-foreground transition-colors hover:bg-primary/5"
-              >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+              <div className="mt-8 flex items-center gap-4 z-10 border-t border-border/10 pt-5">
+                <div className="relative h-12 w-12 overflow-hidden rounded-full border border-border/25 shadow-sm">
+                  <Image
+                    src={d.photo || "/placeholder.svg"}
+                    alt={d.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-foreground text-sm leading-snug">{d.name}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{d.company}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

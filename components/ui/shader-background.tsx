@@ -134,7 +134,7 @@ function initShaderProgram(gl: WebGLRenderingContext, vs: string, fs: string) {
   return program
 }
 
-export default function ShaderBackground({ className }: { className?: string }) {
+export default function ShaderBackground({ className, forceTheme }: { className?: string, forceTheme?: "light" | "dark" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme } = useTheme()
   const themeRef = useRef(resolvedTheme)
@@ -197,9 +197,9 @@ export default function ShaderBackground({ className }: { className?: string }) 
       gl.uniform1f(programInfo.uniformLocations.time, currentTime)
 
       // Dynamic theme colors matching VELLOX Brand (Electric Blue & Lime Green)
-      const isDark = themeRef.current === "dark"
-      const bg1 = isDark ? [0.02, 0.03, 0.07, 1.0] : [0.99, 0.99, 1.0, 1.0]
-      const bg2 = isDark ? [0.05, 0.08, 0.18, 1.0] : [0.94, 0.96, 0.98, 1.0]
+      const isDark = (forceTheme || themeRef.current) === "dark"
+      const bg1 = isDark ? [0.02, 0.03, 0.07, 1.0] : [1.0, 1.0, 1.0, 1.0]
+      const bg2 = isDark ? [0.05, 0.08, 0.18, 1.0] : [1.0, 1.0, 1.0, 1.0]
       // Line color: Electric Blue
       const lineCol = isDark ? [0.15, 0.50, 1.0, 1.0] : [0.10, 0.40, 0.95, 0.65]
 

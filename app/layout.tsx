@@ -44,8 +44,8 @@ export default function RootLayout({
       <body className="font-sans antialiased overflow-x-hidden">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           {children}

@@ -2,8 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { ServiceObject, type ServiceType } from "./three/service-objects"
-import { InView } from "./in-view"
+import { type ServiceType } from "./three/service-objects"
 
 const SERVICES: {
   type: ServiceType
@@ -22,8 +21,8 @@ const SERVICES: {
 export function Services() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
-  // translate the track horizontally; -? based on number of cards
-  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-72%"])
+  // translate the track horizontally; adjusted for smaller card width
+  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-58%"])
 
   return (
     <section id="services" ref={ref} className="relative h-[420vh]">
@@ -45,15 +44,22 @@ export function Services() {
           {SERVICES.map((s) => (
             <article
               key={s.title}
-              className="group relative flex h-[60vh] w-[78vw] shrink-0 flex-col overflow-hidden rounded-3xl glass p-7 sm:w-[60vw] md:w-[42vw] lg:w-[32vw]"
+              className="group relative flex h-[48vh] w-[64vw] shrink-0 flex-col overflow-hidden rounded-3xl glass sm:w-[48vw] md:w-[35vw] lg:w-[25vw] justify-between"
             >
-              <InView className="pointer-events-none absolute inset-x-0 top-0 h-1/2" rootMargin="300px">
-                <ServiceObject type={s.type} />
-              </InView>
-              <div className="mt-auto">
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary">{s.tag}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-foreground md:text-3xl">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+              {/* Image header - Full bleed to the top/sides of the card */}
+              <div className="relative w-full h-[54%] overflow-hidden border-b border-border/10">
+                <img 
+                  src={`/images/services/${s.type === 'neural' ? 'ai' : s.type === 'cubes' ? 'software' : s.type === 'shield' ? 'security' : s.type === 'data' ? 'analytics' : s.type}.png`}
+                  alt={s.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              {/* Text footer - Padded inside the card */}
+              <div className="flex flex-col p-5 sm:p-6 mt-auto">
+                <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-primary">{s.tag}</p>
+                <h3 className="mt-1.5 text-xl font-semibold text-foreground md:text-2xl">{s.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.desc}</p>
               </div>
             </article>
           ))}
