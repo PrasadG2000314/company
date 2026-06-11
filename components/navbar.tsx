@@ -6,7 +6,7 @@ import { motion } from "motion/react"
 const LINKS = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
 ]
 

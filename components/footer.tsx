@@ -37,9 +37,9 @@ export function Footer() {
           <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
             <div>
               <div className="flex items-center gap-2">
-                <div className="relative h-7 w-7 overflow-hidden rounded bg-white p-0.5 shadow-sm border border-border/10 flex items-center justify-center">
+                {/* <div className="relative h-7 w-7 overflow-hidden rounded bg-white p-0.5 shadow-sm border border-border/10 flex items-center justify-center">
                   <img src="/logo.jpg" alt="VELLOX Logo" className="h-full w-full object-contain" />
-                </div>
+                </div> */}
                 <span className="font-mono text-xl font-bold tracking-[0.35em] text-foreground">VELLOX</span>
               </div>
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">

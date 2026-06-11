@@ -4,7 +4,7 @@ import { SmoothScroll } from "@/components/smooth-scroll"
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
-import { Testimonials } from "@/components/testimonials"
+import { Team } from "@/components/team"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 
@@ -14,7 +14,7 @@ export default function Page() {
       <Navbar />
       <Hero />
       <Services />
-      <Testimonials />
+      <Team />
       <Contact />
       <Footer />
     </SmoothScroll>
