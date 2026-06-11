@@ -6,13 +6,13 @@ export function Hero() {
   return (
     <section id="home" className="relative z-0 flex min-h-screen flex-col items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 -z-0 h-full w-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+        style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
       />
 
       {/* Subtle tech grid background */}
-      <div 
+      <div
         className="absolute inset-0 -z-10 opacity-[0.04]"
         style={{
           backgroundImage: `
