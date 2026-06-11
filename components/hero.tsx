@@ -7,7 +7,7 @@ export function Hero() {
     <section id="home" className="relative z-0 flex min-h-screen flex-col items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 -z-20 h-full w-full bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 -z-0 h-full w-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/hero-bg.png')" }}
       />
 

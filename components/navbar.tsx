@@ -31,10 +31,10 @@ export function Navbar() {
           scrolled ? "glass" : "bg-transparent"
         }`}
       >
-        <a href="#home" className="flex items-center gap-2 font-mono text-base font-bold tracking-[0.35em] text-foreground">
-          <div className="relative h-6 w-6 overflow-hidden rounded bg-white p-0.5 shadow-sm border border-border/10 flex items-center justify-center">
+        <a href="#home" className="flex items-center gap-2 font-mono text-base font-bold tracking-[0.65em] text-foreground">
+          {/* <div className="relative h-6 w-6 overflow-hidden rounded bg-white p-0.5 shadow-sm border border-border/10 flex items-center justify-center">
             <img src="/logo.jpg" alt="VELLOX Logo" className="h-full w-full object-contain" />
-          </div>
+          </div> */}
           VELLOX
         </a>
         <ul className="hidden items-center gap-8 md:flex">
